@@ -5,15 +5,13 @@ Captain Hook provides a system for catching files pre-commit and generating mean
 
 ## installation
 
-`python install.py`
+`caphook.sh install`
 
 
 ## usage
 
-`$ caphook handlers --add [extension] [/path/to/script.sh]`  
-`$ caphook handlers --rem [extension]`  
-`$ caphook differs --add [extension] gh [/path/to/custom/diff/module]`  
-`$ caphook differs --rem [extension]`  
+`$ caphook.sh add [extension] [/path/to/script.sh]`  
+`$ caphook.sh rem [extension]`  
 
 
 ## example
