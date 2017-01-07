@@ -20,7 +20,7 @@ run `caphook.sh install` in git repository root
 ### Grasshopper file
 
 `/repo $ caphook.sh install`  
-`> captain hook git hook installed`
+`> captain hook git hook installed`  
 `/repo $ caphook.sh url http://13.93.214.149/`  
 `> service url set to http://13.93.214.149/`  
 `/repo $ caphook.sh add gh`  
