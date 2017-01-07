@@ -29,6 +29,6 @@ run `caphook.sh install` in git repository root
 `/repo $ git add --all :/`  
 `/repo $ git commit -m "I edited the graph"`  
 `/repo $ git push origin master`  
-`> caphook says: a gh file was sent to 13.93.214.149`  
-`> -- 13.93.214.149 says: diff generated and returned`
-`> -- diff image received`  
+```> caphook says: a gh file was sent to 13.93.214.149
+> -- 13.93.214.149 says: diff generated and returned
+> -- diff image received```
