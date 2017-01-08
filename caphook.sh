@@ -49,13 +49,12 @@ done
 #END caphook
 FILTER
 )
-  if [ -f "$prepush" ]
-  then
-	echo "$prepush already exists"
-	if fgrep '#BEGIN caphook' "$prepush"
-	then
-	  echo "captain hook already added to $prepush"
-	else
+  if [ -f "$prepush" ]; then
+    echo "$prepush already exists"
+    if fgrep '#BEGIN caphook' "$prepush"
+    then
+      echo "captain hook already added to $prepush"
+    else
       echo "appending caphook to $prepush"
       echo "$payload" >> "$prepush"
     fi
@@ -64,12 +63,12 @@ FILTER
     printf "%s\n" "#!/bin/sh" "$payload" > "$prepush"
   fi
   if ! [ -d "$caphookPath" ]; then
-	mkdir $caphookPath
-	echo "made the $caphookPath folder"
+    mkdir $caphookPath
+    echo "made the $caphookPath folder"
   fi
   if ! [ -d "caphookPath/temp" ]; then
-  mkdir "$caphookPath/temp"
-  echo "made the $caphookPath/temp folder"
+    mkdir "$caphookPath/temp"
+    echo "made the $caphookPath/temp folder"
   fi
   cat <<-'HANDLER' > "$caphookPath/handler.sh"
 #!/bin/sh
@@ -91,21 +90,23 @@ curl \
   "$url" > .git/caphook/diff.html
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
-  # cp handler.sh "$caphookPath/"
   if ! [ -d "$filesPath" ]; then
-	mkdir $filesPath
-	echo "made the $filesPath folder"
+    mkdir $filesPath
+    echo "made the $filesPath folder"
   fi
   if ! [ -f "$mapFile" ]; then
-	echo "\n" > $mapFile
-	echo "made the map file"
+    echo $'\r' > $mapFile
+    echo "made the map file"
   fi
 }
   
 add() {
-  newLine="$fileType,$handlerScript&\n"
-  sed -i "1s#^#$newLine#" $mapFile
-  echo ".$fileType files will now be processed through $handlerScript on each push";
+  newLine="$fileType,$handlerScript"
+  if ! fgrep "$newLine" $mapFile
+  then
+    echo "$newLine" >> $mapFile
+    echo ".$fileType files will now be processed through $handlerScript on each push";
+  fi
 }
 
 rem() {
@@ -117,8 +118,8 @@ rem() {
     lineCount=$lineCount+1
     if [ "$fileType" = "$f1" ]
     then
-    echo "$fileType found on line $lineCount"
-    sed -i "$lineCount d" $mapFile
+      echo "$fileType found on line $lineCount"
+      sed -i "$lineCount d" $mapFile
     fi  
   done < $mapFile
 
