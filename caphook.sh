@@ -74,19 +74,28 @@ FILTER
 url=${1%$'\r'}
 file=$2
 filetype=`echo "$file" | cut -d'.' -f2`
+cat <<EOF
+
+-- Captain Hook is handling a file -----------
+
+EOF
 git show HEAD~1:$file > .git/caphook/temp/old.$filetype
 if [[ $url =~ ^http ]] ; then
+  echo "sending file to remote service for handling"
   url="$url/$filetype"
-  if ! curl \
+  curl \
     -F "model=@.git/caphook/temp/old.$filetype" \
     -F "compare=@$file" \
-    "$url" > .git/caphook/diff.html ; then
-    exit 1 ;
-  end
+    "$url" > .git/caphook/diff.html
 else
-  echo "must be a command: $url"
+  echo "sending file to local executable for handling"
   $url ".git/caphook/temp/old.$filetype" $file
-end
+fi
+cat <<EOF
+
+----------------------------------------------
+
+EOF
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
   if ! [ -d "$filesPath" ]; then
