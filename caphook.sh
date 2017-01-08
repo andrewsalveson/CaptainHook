@@ -95,7 +95,6 @@ if [[ $url =~ ^http ]] ; then
     -F "model=@.git/caphook/temp/old.$filetype" \
     -F "compare=@$file" \
     "$url" >> $output
-  echo "see diff results at $output"
 else
   echo "sending file to local executable for handling"
   status=$($url ".git/caphook/temp/old.$filetype" $file)
@@ -103,6 +102,7 @@ else
     echo $status >> $output
   fi
 fi
+echo "see diff results at $output"
 echo "</div>" >> $output
 cat <<EOF
 
