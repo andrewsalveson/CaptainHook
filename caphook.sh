@@ -50,8 +50,8 @@ install() {
   
 add() {
   newLine="$fileType,$handlerScript&\n"
-  sed -i "1s/^/$newLine/" $mapFile
-  echo ".$fileType files will now be processed through $handlerScript on each commit";
+  sed -i "1s#^#$newLine#" $mapFile
+  echo ".$fileType files will now be processed through $handlerScript on each push";
 }
 
 rem() {
@@ -68,7 +68,7 @@ do
   fi  
 done < $mapFile
 
-echo ".$fileType files will no longer be processed on each commit";
+echo ".$fileType files will no longer be processed on each push";
 }
 
 $@ # call arguments verbatim
