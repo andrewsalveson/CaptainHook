@@ -1,7 +1,7 @@
 #!/bin/sh
 
 caphookPath="./.git/caphook"
-filesPath="./.git/caphook/files"
+filesPath="./.git/caphook/diffs"
 mapFile="./.git/caphook/map"
 prepush="./.git/hooks/pre-push"
 stateFile="./.git/caphook/state"
@@ -75,25 +75,35 @@ FILTER
 url=${1%$'\r'}
 file=$2
 commit=$(git rev-parse HEAD)
+origin=$(git remote get-url --push origin)
 filetype=`echo "$file" | cut -d'.' -f2`
+output=".git/caphook/diffs/$commit.html"
 cat <<EOF
 
 -- Captain Hook is handling a file -----------
 
 EOF
 git show HEAD~1:$file > .git/caphook/temp/old.$filetype
+if ! [ -f "$output" ] ; then
+  echo "diff generated from commit <a href=\"$origin/commit/$commit\">$commit</a>" >> $output
+fi
+echo "<div name=\"$file\"><h1>$file</h1>" >> $output
 if [[ $url =~ ^http ]] ; then
   echo "sending file to remote service for handling"
   url="$url/$filetype"
   curl \
     -F "model=@.git/caphook/temp/old.$filetype" \
     -F "compare=@$file" \
-    "$url" > .git/caphook/$commit.html
-  echo "see diff results at .git/caphook/$commit.html"
+    "$url" >> $output
+  echo "see diff results at $output"
 else
   echo "sending file to local executable for handling"
-  $url ".git/caphook/temp/old.$filetype" $file
+  status=$($url ".git/caphook/temp/old.$filetype" $file)
+  if [ status ] ; then
+    echo $status >> $output
+  fi
 fi
+echo "</div>" >> $output
 cat <<EOF
 
 ----------------------------------------------
