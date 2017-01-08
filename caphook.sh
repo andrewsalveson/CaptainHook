@@ -152,11 +152,11 @@ map() {
 }
 
 on() {
-  echo 1 > $stateFile
+  echo "on" > $stateFile
 }
 
 off() {
-  echo 0 > $stateFile
+  echo "off" > $stateFile
 }
 
 $@ # call arguments verbatim
