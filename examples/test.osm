@@ -79,7 +79,7 @@ OS:Schedule:Day,
   0.3,                                    !- Value Until Time 3
   17,                                     !- Hour 4
   0,                                      !- Minute 4
-  0.9,                                    !- Value Until Time 4
+  0.85,                                    !- Value Until Time 4
   18,                                     !- Hour 5
   0,                                      !- Minute 5
   0.7,                                    !- Value Until Time 5
