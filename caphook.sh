@@ -45,7 +45,6 @@ git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
     IFS=${oldIFS}
   fi;
 done
-  # git diff --cached --name-status | awk '$1 == "M" { print "$2 was modified" }'
 #END caphook
 FILTER
 )
