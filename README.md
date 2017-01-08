@@ -12,7 +12,9 @@ run `./caphook.sh install` in git repository root. The installation script creat
 
 remove Captain Hook with the command `./caphook.sh remove`
 
-Once installed, add a handler to your git hook with the `add` command:
+### handlers
+
+Once installed, add a file extension handler to your git hook with the `add` command:
 
 `$ caphook.sh add [extension] [http://domain.com:port/route]`  
 
