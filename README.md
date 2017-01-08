@@ -92,7 +92,7 @@ sending file to remote service for handling
 
 see diff results at .git/caphook/diffs/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html
 ```
-This one got some meaningful results, which have been placed in the file shown above. Git will then continue with the push:
+This one got some meaningful results, which have been placed in [the file shown above](https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/examples/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html). Git will then continue with the push:
 ```
 Counting objects: 5, done.
 Delta compression using up to 4 threads.
