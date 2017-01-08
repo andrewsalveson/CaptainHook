@@ -4,6 +4,7 @@ caphookPath="./.git/caphook"
 filesPath="./.git/caphook/files"
 mapFile="./.git/caphook/map"
 prepush="./.git/hooks/pre-push"
+stateFile="./.git/caphook/state"
 
 command=$1
 fileType=$2
@@ -102,6 +103,10 @@ HANDLER
     mkdir $filesPath
     echo "made the $filesPath folder"
   fi
+  if ! [ -f "$stateFile" ]; then
+    echo 1 > $stateFile
+    echo "made state file"
+  fi
   if ! [ -f "$mapFile" ]; then
     echo $'\r' > $mapFile
     echo "made the map file"
@@ -144,6 +149,14 @@ map() {
   while IFS=, read -r ext path ; do
     echo "$ext ---> $path";
   done < $mapFile
+}
+
+on() {
+  echo 1 > $stateFile
+}
+
+off() {
+  echo 0 > $stateFile
 }
 
 $@ # call arguments verbatim
