@@ -1,6 +1,8 @@
 # CaptainHook
 
-Captain Hook provides a system for handling files pre-push.
+Captain Hook provides a system for handling files pre-push. You can specify file extensions that should be handled pre-push, and pipe them to a remote service or a local program or script.  
+
+Meaningful responses from services or local programs will get added to a diff report that is stored under the commit hash at `.git/caphook/diffs/[diff hash].html`
 
 ## usage
 
