@@ -5945,7 +5945,7 @@ OS:Lights:Definition,
   189.1-2009 - Office - WholeBuilding - Sm Office - CZ4-8 Lights Definition, !- Name
   Watts/Area,                             !- Design Level Calculation Method
   ,                                       !- Lighting Level {W}
-  9.68751937503875,                       !- Watts per Space Floor Area {W/m2}
+  5.245734583468,                       !- Watts per Space Floor Area {W/m2}
   ;                                       !- Watts per Person {W/person}
 
 OS:Lights,
