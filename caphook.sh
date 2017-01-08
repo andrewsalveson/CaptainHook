@@ -66,7 +66,7 @@ FILTER
     mkdir $caphookPath
     echo "made the $caphookPath folder"
   fi
-  if ! [ -d "caphookPath/temp" ]; then
+  if ! [ -d "$caphookPath/temp" ]; then
     mkdir "$caphookPath/temp"
     echo "made the $caphookPath/temp folder"
   fi
@@ -99,6 +99,12 @@ HANDLER
     echo "made the map file"
   fi
 }
+
+remove() {
+  echo "uninstalling Captain Hook"
+  rm -rf .git/caphook
+  sed -i '/#BEGIN caphook/,/#END caphook/d' $prepush
+}
   
 add() {
   newLine="$fileType,$handlerScript"
@@ -113,7 +119,7 @@ rem() {
   declare -i lineCount=0
 
   # Set "," as the field separator using $IFS and read line by line using while read combo
-  while IFS=',' read f1 f2 
+  while IFS=, read f1 f2 
   do 
     lineCount=$lineCount+1
     if [ "$fileType" = "$f1" ]
@@ -124,6 +130,13 @@ rem() {
   done < $mapFile
 
   echo ".$fileType files will no longer be processed on each push";
+}
+
+map() {
+  echo "Captain Hook extension map"
+  while IFS=, read -r ext path ; do
+    echo "$ext ---> $path";
+  done < $mapFile
 }
 
 $@ # call arguments verbatim
