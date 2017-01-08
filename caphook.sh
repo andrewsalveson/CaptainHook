@@ -72,4 +72,3 @@ echo ".$fileType files will no longer be processed on each push";
 }
 
 $@ # call arguments verbatim
-read -n1 -p "Press any key to exit..." key
