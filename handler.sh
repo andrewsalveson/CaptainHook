@@ -19,4 +19,4 @@ cat examples/test.osm
 curl \
   -F "model=@examples/test.osm" \
   -F "compare=@examples/test2.osm" \
-  $url > output.html
+  $url >> output.html

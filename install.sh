@@ -1,17 +1,17 @@
 #!/bin/sh
-precommit="./.git/hooks/pre-commit"
+prepush="./.git/hooks/pre-push"
 payload=$(<filter.sh)
-if [ -f "$precommit" ]
+if [ -f "$prepush" ]
 then
-  echo "$precommit already exists"
-  if fgrep '#BEGIN caphook' "$precommit"
+  echo "$prepush already exists"
+  if fgrep '#BEGIN caphook' "$prepush"
   then
-    echo "captain hook already added to $precommit"
+    echo "captain hook already added to $prepush"
   else
-    echo "appending caphook to $precommit"
-    echo "$payload" >> "$precommit"
+    echo "appending caphook to $prepush"
+    echo "$payload" >> "$prepush"
   fi
 else
-  echo "$precommit does not exist, creating"
-  printf "%s\n" "#!/bin/sh" "$payload" > "$precommit"
+  echo "$prepush does not exist, creating"
+  printf "%s\n" "#!/bin/sh" "$payload" > "$prepush"
 fi
