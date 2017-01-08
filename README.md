@@ -34,25 +34,38 @@ dyn,http://pwc01gisdata/VVD
 
 ### Grasshopper file
 
-`~/repo $ ./caphook.sh install`  
+the command `./caphook.sh install`  
+produces:
 ```
 ./.git/hooks/pre-push does not exist, creating
 made the ./.git/caphook folder
 made the ./.git/caphook/temp folder
 made the ./.git/caphook/files folder
 made the map file
-
 ```
-`~/repo $ ./caphook.sh add osm http://13.93.214.149:8080/file`  
+
+the command `./caphook.sh add osm http://13.93.214.149:8080/file`  
+produces:
 ```
 .osm files will now be processed through http://13.93.214.149:8080/file on each push
 ``` 
-(edit .gh file)  
-`~/repo $ git add --all :/`  
-`~/repo $ git commit -m "I edited a file"`  
-`~/repo $ git push origin master`  
+the git push command `git push`  
+produces:
 ```
- > caphook says: a gh file was sent to 13.93.214.149
- > -- 13.93.214.149 says: diff generated and returned
- > -- diff image received
+$ git push origin master
+Scanning diff for modified files . . .
+check osm against osm
+examples/test.osm is a osm ---> http://13.93.214.149:8080/file
+http://13.93.214.149:8080/file
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 1383k  100  2284  100 1381k    310   187k  0:00:07  0:00:07 --:--:--     0
+Counting objects: 4, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 419 bytes | 0 bytes/s, done.
+Total 4 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/andrewsalveson/CaptainHook
+   dddcbcf..d6d26c7  master -> master
 ```
