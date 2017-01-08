@@ -19,9 +19,9 @@ run `caphook.sh install` in git repository root
 
 ### Grasshopper file
 
-`/repo $ caphook.sh install`  
+`/repo $ ./caphook.sh install`  
 ` > captain hook git hook installed`  
-`/repo $ caphook.sh url http://13.93.214.149/`  
+`/repo $ bash caphook.sh add osm http://13.93.214.149:8080/file`  
 ` > service url set to http://13.93.214.149/`  
 `/repo $ caphook.sh add gh`  
 ` > gh files will be submitted to http://13.93.214.149/`
@@ -29,6 +29,8 @@ run `caphook.sh install` in git repository root
 `/repo $ git add --all :/`  
 `/repo $ git commit -m "I edited the graph"`  
 `/repo $ git push origin master`  
-``` > caphook says: a gh file was sent to 13.93.214.149
+```
+ > caphook says: a gh file was sent to 13.93.214.149
  > -- 13.93.214.149 says: diff generated and returned
- > -- diff image received```
+ > -- diff image received
+```
