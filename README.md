@@ -2,13 +2,15 @@
 
 Captain Hook provides a system for handling files pre-push.
 
+## usage
 
-## installation
+### installation
 
 run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
 
+### removal
 
-## usage
+remove Captain Hook with the command `./caphook.sh remove`
 
 Once installed, add a handler to your git hook with the `add` command:
 
@@ -20,14 +22,13 @@ Remove a handler using the `rem` command:
 
 Before executing a push, Captain Hook will check each modified file in the commit against the contents of `.git/caphook/map` to see if its extension matches. If it does, Captain Hook sends the previous version of the file and the current version of the file to the remote service to be diffed. The response is written to `.git/caphook/diff.html`.
 
+### map
 
-## map
-
-Captain Hook stores a map of extensions and handlers in `.git/caphook/map`. An example `map` file might look like this:
+Captain Hook stores a map of extensions and handlers in `.git/caphook/map`. Use the command `./caphook.sh map` to see which extensions are mapped to which URLs. An example `map` file might look like this:
 ```
-gh,http://pwc01gisdata/VVD
-osm,http://13.93.214.149:8080/file
-dyn,http://pwc01gisdata/VVD
+gh ---> http://pwc01gisdata/VVD
+osm ---> http://13.93.214.149:8080/file
+dyn ---> http://pwc01gisdata/VVD
 ```
 
 ## example

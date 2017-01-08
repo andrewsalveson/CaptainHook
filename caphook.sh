@@ -133,7 +133,6 @@ rem() {
 }
 
 map() {
-  echo "Captain Hook extension map"
   while IFS=, read -r ext path ; do
     echo "$ext ---> $path";
   done < $mapFile
