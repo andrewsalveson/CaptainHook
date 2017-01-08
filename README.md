@@ -63,9 +63,9 @@ returns:
 ```
 .gh files will now be processed through /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd on each push
 ```
+I have made some edits to a grasshopper file as well as an OSM file, so both will be seen when the Captain sifts through the commit.  
 
-
-the git push command `git push` starts the Captain:
+The git push command `git push` starts the Captain:
 ```
 $ git push origin master
 Scanning diff for modified files . . .
