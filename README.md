@@ -8,7 +8,21 @@ Meaningful responses from services or local programs will get added to an HTML d
 
 ### installation
 
-run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.
+run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
+
+Captain Hook creates these files:
+
+```
+.git
+  +-- hooks
+  | `-- pre-push   // adds a hook to this file or creates it
+  `-- caphook      // root folder
+    +-- diffs      // diff reports go here
+    +-- temp       // for temporary storage
+    +-- handler.sh // file handler script
+    +-- map        // extension -> handler mappings
+    `-- state      // on/off state of the Captain
+```
 
 ### enable/disable
 

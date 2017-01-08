@@ -163,10 +163,12 @@ map() {
 }
 
 on() {
+  echo "Captain on deck!"
   echo "on" > $stateFile
 }
 
 off() {
+  echo "the Captain retreats to his cabin"
   echo "off" > $stateFile
 }
 
