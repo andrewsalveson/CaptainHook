@@ -4,6 +4,7 @@ caphookPath="./.git/caphook"
 filesPath="./.git/caphook/files"
 mapFile="./.git/caphook/map"
 prepush="./.git/hooks/pre-push"
+stateFile="./.git/caphook/state"
 
 command=$1
 fileType=$2
@@ -74,26 +75,37 @@ FILTER
 url=${1%$'\r'}
 file=$2
 filetype=`echo "$file" | cut -d'.' -f2`
+cat <<EOF
+
+-- Captain Hook is handling a file -----------
+
+EOF
 git show HEAD~1:$file > .git/caphook/temp/old.$filetype
-case $filetype in
-  gh)
-    url="$url/gh" ;;
-  osm) 
-    url="$url/osm" ;;
-  \?)
-    ;;
-esac
-if ! curl \
-  -F "model=@.git/caphook/temp/old.$filetype" \
-  -F "compare=@$file" \
-  "$url" > .git/caphook/diff.html ; then
-  exit 1 ;
-end
+if [[ $url =~ ^http ]] ; then
+  echo "sending file to remote service for handling"
+  url="$url/$filetype"
+  curl \
+    -F "model=@.git/caphook/temp/old.$filetype" \
+    -F "compare=@$file" \
+    "$url" > .git/caphook/diff.html
+else
+  echo "sending file to local executable for handling"
+  $url ".git/caphook/temp/old.$filetype" $file
+fi
+cat <<EOF
+
+----------------------------------------------
+
+EOF
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
   if ! [ -d "$filesPath" ]; then
     mkdir $filesPath
     echo "made the $filesPath folder"
+  fi
+  if ! [ -f "$stateFile" ]; then
+    echo "on" > $stateFile
+    echo "made state file"
   fi
   if ! [ -f "$mapFile" ]; then
     echo $'\r' > $mapFile
@@ -137,6 +149,14 @@ map() {
   while IFS=, read -r ext path ; do
     echo "$ext ---> $path";
   done < $mapFile
+}
+
+on() {
+  echo "on" > $stateFile
+}
+
+off() {
+  echo "off" > $stateFile
 }
 
 $@ # call arguments verbatim
