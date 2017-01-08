@@ -120,13 +120,13 @@ OS:Schedule:Rule,
   {2c940045-acb3-429d-974e-30a7a792c982}, ! Schedule Ruleset Name
   0,                                      ! Rule Order
   {f781a329-5fd9-4e85-a1ef-b4bef14b48ef}, ! Day Schedule Name
-  Yes,                                    ! Apply Sunday
-  Yes,                                    ! Apply Monday
+  No,                                     ! Apply Sunday
+  No,                                     ! Apply Monday
   No,                                     ! Apply Tuesday
   No,                                     ! Apply Wednesday
   No,                                     ! Apply Thursday
   No,                                     ! Apply Friday
-  Yes,                                    ! Apply Saturday
+  No,                                     ! Apply Saturday
   ,                                       ! Apply Holiday
   DateRange,                              ! Date Specification Type
   1,                                      ! Start Month
