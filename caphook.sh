@@ -74,6 +74,7 @@ FILTER
 #!/bin/sh
 url=${1%$'\r'}
 file=$2
+commit=$(git rev-parse HEAD)
 filetype=`echo "$file" | cut -d'.' -f2`
 cat <<EOF
 
@@ -87,7 +88,8 @@ if [[ $url =~ ^http ]] ; then
   curl \
     -F "model=@.git/caphook/temp/old.$filetype" \
     -F "compare=@$file" \
-    "$url" > .git/caphook/diff.html
+    "$url" > .git/caphook/$commit.html
+  echo "see diff results at .git/caphook/$commit.html"
 else
   echo "sending file to local executable for handling"
   $url ".git/caphook/temp/old.$filetype" $file
