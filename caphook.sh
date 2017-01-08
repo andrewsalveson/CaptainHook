@@ -45,7 +45,6 @@ git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
     IFS=${oldIFS}
   fi;
 done
-  # git diff --cached --name-status | awk '$1 == "M" { print "$2 was modified" }'
 #END caphook
 FILTER
 )
@@ -84,10 +83,12 @@ case $filetype in
   \?)
     ;;
 esac
-curl \
+if ! curl \
   -F "model=@.git/caphook/temp/old.$filetype" \
   -F "compare=@$file" \
-  "$url" > .git/caphook/diff.html
+  "$url" > .git/caphook/diff.html ; then
+  exit 1
+fi
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
   if ! [ -d "$filesPath" ]; then
