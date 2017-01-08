@@ -104,7 +104,7 @@ HANDLER
     echo "made the $filesPath folder"
   fi
   if ! [ -f "$stateFile" ]; then
-    echo 1 > $stateFile
+    echo "on" > $stateFile
     echo "made state file"
   fi
   if ! [ -f "$mapFile" ]; then
