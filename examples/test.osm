@@ -74,8 +74,8 @@ OS:Schedule:Day,
   7,                                      !- Hour 2
   0,                                      !- Minute 2
   0.1,                                    !- Value Until Time 2
-  7,                                      !- Hour 3
-  1,                                      !- Minute 3
+  8,                                      !- Hour 3
+  0,                                      !- Minute 3
   0.3,                                    !- Value Until Time 3
   17,                                     !- Hour 4
   0,                                      !- Minute 4
