@@ -9,22 +9,19 @@ command=$1
 fileType=$2
 handlerScript=$3
 
-echo "command: $command"
-echo "file type: $fileType"
-echo "handler script: $handlerScript"
+# echo "command: $command"
+# echo "file type: $fileType"
+# echo "handler script: $handlerScript"
 
 install() {
+  echo "installing Captain Hook"
   # payload=$(<filter.sh)
   payload=$(cat<<-'FILTER'
 #BEGIN caphook
 cat <<\CAPHOOK
 Scanning diff for modified files . . .
 CAPHOOK
-
 commit=$(git rev-parse HEAD)
-
-echo "commit $commit"
-
 git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
   if [ "$flag" == "M" ]
   then
@@ -49,9 +46,7 @@ git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
     IFS=${oldIFS}
   fi;
 done
-
   # git diff --cached --name-status | awk '$1 == "M" { print "$2 was modified" }'
-
 #END caphook
 FILTER
 )
@@ -94,7 +89,8 @@ esac
 curl \
   -F "model=@.git/caphook/temp/old.$filetype" \
   -F "compare=@$file" \
-  "$url" > output.html
+  "$url" > .git/caphook/diff.html
+rm ".git/caphook/temp/old.$filetype"
 HANDLER
   # cp handler.sh "$caphookPath/"
   if ! [ -d "$filesPath" ]; then
@@ -114,20 +110,20 @@ add() {
 }
 
 rem() {
-declare -i lineCount=0
+  declare -i lineCount=0
 
-# Set "," as the field separator using $IFS and read line by line using while read combo
-while IFS=',' read f1 f2 
-do 
-  lineCount=$lineCount+1
-  if [ "$fileType" = "$f1" ]
-  then
-	echo "$fileType found on line $lineCount"
-	sed -i "$lineCount d" $mapFile
-  fi  
-done < $mapFile
+  # Set "," as the field separator using $IFS and read line by line using while read combo
+  while IFS=',' read f1 f2 
+  do 
+    lineCount=$lineCount+1
+    if [ "$fileType" = "$f1" ]
+    then
+    echo "$fileType found on line $lineCount"
+    sed -i "$lineCount d" $mapFile
+    fi  
+  done < $mapFile
 
-echo ".$fileType files will no longer be processed on each push";
+  echo ".$fileType files will no longer be processed on each push";
 }
 
 $@ # call arguments verbatim
