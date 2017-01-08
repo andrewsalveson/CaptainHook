@@ -61,19 +61,46 @@ produces:
 the git push command `git push`  
 produces:
 ```
+$ git push origin master
 Scanning diff for modified files . . .
-check osm against osm
+examples/example.gh is a gh ---> /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
+/c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
+```
+then Captain Hook will handle the specific file type
+```
+-- Captain Hook is handling a file -----------
+
+sending file to local executable for handling
+The system cannot find the path specified.
+The system cannot find the path specified.
+python: can't open file 'diffgraph.py': [Errno 2] No such file or directory
+
+----------------------------------------------
+```
+Here the target script threw a bunch of errors. No worries, the Captain is on to the next file:
+```
 examples/test.osm is a osm ---> http://13.93.214.149:8080/file
 http://13.93.214.149:8080/file
+
+-- Captain Hook is handling a file -----------
+
+sending file to remote service for handling
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 1383k  100  2284  100 1381k    310   187k  0:00:07  0:00:07 --:--:--     0
-Counting objects: 4, done.
+100 1384k  100  3329  100 1381k    459   190k  0:00:07  0:00:07 --:--:--     0
+see diff results at .git/caphook/diffs/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html
+
+----------------------------------------------
+```
+This one got some meaningful results, which have been placed in the file shown above. Git will then continue with the push:
+```
+Counting objects: 5, done.
 Delta compression using up to 4 threads.
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (4/4), 419 bytes | 0 bytes/s, done.
-Total 4 (delta 2), reused 0 (delta 0)
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 2.39 KiB | 0 bytes/s, done.
+Total 5 (delta 2), reused 0 (delta 0)
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 To https://github.com/andrewsalveson/CaptainHook
-   dddcbcf..d6d26c7  master -> master
+   75a7232..2cbacaf  master -> master
+
 ```
