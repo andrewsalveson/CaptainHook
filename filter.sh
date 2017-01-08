@@ -14,7 +14,7 @@ git diff --cached --name-status | while read -r flag file ; do
     do 
       ((${#array[@]} >= 2 )) || continue
       assoc["${array[0]}"]="${array[@]:1}"
-    done < ./map
+    done < .git/caphook/map
     for key in "${!assoc[@]}"
     do
       if [ "$filetype" == "${key}"   ]

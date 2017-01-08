@@ -33,6 +33,11 @@ install() {
 	mkdir $caphookPath
 	echo "made the $caphookPath folder"
   fi
+  if ! [ -d "caphookPath/temp" ]; then
+  mkdir $caphookPath
+  echo "made the $caphookPath/temp folder"
+  fi
+  cp handler.sh "$caphookPath/"
   if ! [ -d "$filesPath" ]; then
 	mkdir $filesPath
 	echo "made the $filesPath folder"
