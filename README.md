@@ -6,17 +6,21 @@ Captain Hook provides a system for handling files pre-push.
 
 ### installation
 
-run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
+run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.
+
+### enable/disable
+
+Turn Captain Hook on or off with the commands `./caphook.sh on` and `./caphook.sh off` 
 
 ### removal
 
-remove Captain Hook with the command `./caphook.sh remove`
+remove Captain Hook with the command `./caphook.sh remove` - this will delete ALL mappings.
 
 ### handlers
 
 Once installed, add a file extension handler to your git hook with the `add` command:
 
-`$ caphook.sh add [extension] [http://domain.com:port/route]`  
+`$ caphook.sh add [extension] [http://domain.com:port/route|/path/to/script]`  
 
 Remove a handler using the `rem` command:
 
