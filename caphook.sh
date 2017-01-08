@@ -39,7 +39,6 @@ git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
       if [ "$filetype" == "${key}"   ]
       then
         echo "$file is a ${key} ---> ${assoc[${key}]}"
-        echo ${assoc[$key]}
         .git/caphook/handler.sh "${assoc[$key]}" $file
       fi
     done

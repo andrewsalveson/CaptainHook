@@ -67,7 +67,6 @@ Scanning diff for modified files . . .
 then Captain Hook will handle the specific file type
 ```
 examples/example.gh is a gh ---> /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
-/c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
 
 -- Captain Hook is handling a file -----------
 
@@ -81,7 +80,6 @@ python: can't open file 'diffgraph.py': [Errno 2] No such file or directory
 Here the target script threw a bunch of errors. No worries, the Captain is on to the next file:
 ```
 examples/test.osm is a osm ---> http://13.93.214.149:8080/file
-http://13.93.214.149:8080/file
 
 -- Captain Hook is handling a file -----------
 
