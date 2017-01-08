@@ -84,10 +84,12 @@ case $filetype in
   \?)
     ;;
 esac
-curl \
+if ! curl \
   -F "model=@.git/caphook/temp/old.$filetype" \
   -F "compare=@$file" \
-  "$url" > .git/caphook/diff.html
+  "$url" > .git/caphook/diff.html ; then
+  exit 1 ;
+end
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
   if ! [ -d "$filesPath" ]; then
