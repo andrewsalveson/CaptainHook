@@ -63,11 +63,12 @@ produces:
 ```
 $ git push origin master
 Scanning diff for modified files . . .
-examples/example.gh is a gh ---> /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
-/c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
 ```
 then Captain Hook will handle the specific file type
 ```
+examples/example.gh is a gh ---> /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
+/c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
+
 -- Captain Hook is handling a file -----------
 
 sending file to local executable for handling
@@ -88,9 +89,10 @@ sending file to remote service for handling
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 1384k  100  3329  100 1381k    459   190k  0:00:07  0:00:07 --:--:--     0
-see diff results at .git/caphook/diffs/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html
 
 ----------------------------------------------
+
+see diff results at .git/caphook/diffs/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html
 ```
 This one got some meaningful results, which have been placed in the file shown above. Git will then continue with the push:
 ```
