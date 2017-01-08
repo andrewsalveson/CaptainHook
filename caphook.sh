@@ -75,19 +75,17 @@ url=${1%$'\r'}
 file=$2
 filetype=`echo "$file" | cut -d'.' -f2`
 git show HEAD~1:$file > .git/caphook/temp/old.$filetype
-case $filetype in
-  gh)
-    url="$url/gh" ;;
-  osm) 
-    url="$url/osm" ;;
-  \?)
-    ;;
-esac
-if ! curl \
-  -F "model=@.git/caphook/temp/old.$filetype" \
-  -F "compare=@$file" \
-  "$url" > .git/caphook/diff.html ; then
-  exit 1 ;
+if [[ $url =~ ^http ]] ; then
+  url="$url/$filetype"
+  if ! curl \
+    -F "model=@.git/caphook/temp/old.$filetype" \
+    -F "compare=@$file" \
+    "$url" > .git/caphook/diff.html ; then
+    exit 1 ;
+  end
+else
+  echo "must be a command: $url"
+  $url ".git/caphook/temp/old.$filetype" $file
 end
 rm ".git/caphook/temp/old.$filetype"
 HANDLER
