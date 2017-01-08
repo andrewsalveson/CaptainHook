@@ -121,9 +121,9 @@ OS:Schedule:Rule,
   0,                                      ! Rule Order
   {f781a329-5fd9-4e85-a1ef-b4bef14b48ef}, ! Day Schedule Name
   Yes,                                    ! Apply Sunday
-  Yes,                                    ! Apply Monday
-  Yes,                                    ! Apply Tuesday
-  Yes,                                    ! Apply Wednesday
+  No,                                     ! Apply Monday
+  No,                                     ! Apply Tuesday
+  No,                                     ! Apply Wednesday
   No,                                     ! Apply Thursday
   No,                                     ! Apply Friday
   Yes,                                    ! Apply Saturday
