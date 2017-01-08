@@ -2,7 +2,7 @@
 
 Captain Hook provides a system for handling files pre-push. You can specify file extensions that should be handled pre-push, and pipe them to a remote service or a local program or script.  
 
-Meaningful responses from services or local programs will get added to a diff report that is stored under the commit hash at `.git/caphook/diffs/[diff hash].html`
+Meaningful responses from services or local programs will get added to an HTML diff report that is stored within the git folder under the commit hash at `.git/caphook/diffs/[diff hash].html`
 
 ## usage
 
@@ -41,10 +41,10 @@ dyn ---> http://pwc01gisdata/VVD
 
 ## example
 
-### OpenStudio Measures File
+### Grasshopper and OpenStudio Measures File
 
-the command `./caphook.sh install`  
-produces:
+first I'll install Captain Hook: `./caphook.sh install`  
+returns:
 ```
 ./.git/hooks/pre-push does not exist, creating
 made the ./.git/caphook folder
@@ -53,18 +53,24 @@ made the ./.git/caphook/files folder
 made the map file
 ```
 
-the command `./caphook.sh add osm http://13.93.214.149:8080/file`  
-produces:
+I'm going to add an OSM handler: `./caphook.sh add osm http://13.93.214.149:8080/file` returns:
 ```
 .osm files will now be processed through http://13.93.214.149:8080/file on each push
 ``` 
-the git push command `git push`  
-produces:
+
+I will also add a Grasshopper(.gh) handler, which is a local script on my system: `./caphook.sh add gh /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd`  
+returns:
+```
+.gh files will now be processed through /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd on each push
+```
+
+
+the git push command `git push` starts the Captain:
 ```
 $ git push origin master
 Scanning diff for modified files . . .
 ```
-then Captain Hook will handle the specific file type
+then Captain Hook handles the specific file type
 ```
 examples/example.gh is a gh ---> /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
 
@@ -92,7 +98,7 @@ sending file to remote service for handling
 
 see diff results at .git/caphook/diffs/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html
 ```
-This one got some meaningful results, which have been placed in [the file shown above](https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/examples/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html). Git will then continue with the push:
+This one got some meaningful results, which have been placed in [the file shown above](https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/examples/2cbacafa54cf3d1c4d04780c751ffcc2956a83d7.html). Git then continued with the push:
 ```
 Counting objects: 5, done.
 Delta compression using up to 4 threads.
@@ -102,5 +108,4 @@ Total 5 (delta 2), reused 0 (delta 0)
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 To https://github.com/andrewsalveson/CaptainHook
    75a7232..2cbacaf  master -> master
-
 ```
