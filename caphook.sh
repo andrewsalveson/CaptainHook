@@ -77,7 +77,7 @@ FILTER
   mkdir "$caphookPath/temp"
   echo "made the $caphookPath/temp folder"
   fi
-  cat << HANDLER > "$caphookPath/handler.sh"
+  cat <<-'HANDLER' > "$caphookPath/handler.sh"
 #!/bin/sh
 url=${1%$'\r'}
 file=$2
