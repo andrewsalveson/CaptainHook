@@ -35,7 +35,6 @@ git diff "$commit^" "$commit" --name-status | while read -r flag file ; do
     done < .git/caphook/map
     for key in "${!assoc[@]}"
     do
-      echo "check $filetype against ${key}"
       if [ "$filetype" == "${key}"   ]
       then
         echo "$file is a ${key} ---> ${assoc[${key}]}"

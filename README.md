@@ -32,7 +32,7 @@ dyn,http://pwc01gisdata/VVD
 
 ## example
 
-### Grasshopper file
+### OpenStudio Measures File
 
 the command `./caphook.sh install`  
 produces:
@@ -52,7 +52,6 @@ produces:
 the git push command `git push`  
 produces:
 ```
-$ git push origin master
 Scanning diff for modified files . . .
 check osm against osm
 examples/test.osm is a osm ---> http://13.93.214.149:8080/file
