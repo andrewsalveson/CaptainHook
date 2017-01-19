@@ -91,6 +91,7 @@ if [[ $url =~ ^http ]] ; then
   echo "sending file to remote service for handling"
   url="$url/$filetype"
   curl \
+    --insecure \
     -F "model=@.git/caphook/temp/old.$filetype" \
     -F "compare=@$file" \
     "$url" >> $output

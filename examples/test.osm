@@ -89,7 +89,7 @@ OS:Schedule:Day,
   22,                                     !- Hour 7
   0,                                      !- Minute 7
   0.3,                                    !- Value Until Time 7
-  27,                                     !- Hour 8
+  23,                                     !- Hour 8
   0,                                      !- Minute 8
   0.1,                                    !- Value Until Time 8
   24,                                     !- Hour 9
