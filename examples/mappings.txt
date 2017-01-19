@@ -1,2 +1,3 @@
 ./caphook.sh add osm http://13.93.214.149:8080/file
+./caphook.sh add osm https://insight.perkinswill.com/hack/file
 ./caphook.sh add gh /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd
