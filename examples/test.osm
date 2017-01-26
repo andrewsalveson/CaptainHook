@@ -77,7 +77,7 @@ OS:Schedule:Day,
   5,                                      !- Hour 3
   2,                                      !- Minute 3
   0.3,                                    !- Value Until Time 3
-  17,                                     !- Hour 4
+  13,                                     !- Hour 4
   0,                                      !- Minute 4
   4.5,                                    !- Value Until Time 4
   17,                                     !- Hour 5
@@ -151,7 +151,7 @@ OS:Schedule:Rule,
   {d19a64b1-fd5a-4540-b6d8-57bf21de3b30}, ! Day Schedule Name
   No,                                     ! Apply Sunday
   No,                                     ! Apply Monday
-  No,                                     ! Apply Tuesday
+  Yes,                                     ! Apply Tuesday
   No,                                     ! Apply Wednesday
   No,                                     ! Apply Thursday
   No,                                     ! Apply Friday
