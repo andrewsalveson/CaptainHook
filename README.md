@@ -8,9 +8,12 @@ Meaningful responses from services or local programs will get added to an HTML d
 
 ### installation
 
-download and run Captain Hook: `wget https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/caphook.sh && chmod +x ./caphook.sh && ./caphook.sh install`
+download and run Captain Hook:
+````
+wget https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/caphook && chmod +x ./caphook && ./caphook install
+```
 
-run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
+run `./caphook install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
 
 Captain Hook creates these files:
 
@@ -28,27 +31,27 @@ Captain Hook creates these files:
 
 ### enable/disable
 
-Turn Captain Hook on or off with the commands `./caphook.sh on` and `./caphook.sh off` 
+Turn Captain Hook on or off with the commands `./caphook on` and `./caphook off` 
 
 ### removal
 
-remove Captain Hook with the command `./caphook.sh remove` - this will delete ALL mappings.
+remove Captain Hook with the command `./caphook remove` - this will delete ALL mappings.
 
 ### handlers
 
 Once installed, add a file extension handler to your git hook with the `add` command:
 
-`$ caphook.sh add [extension] [http://domain.com:port/route|/path/to/script]`  
+`$ caphook add [extension] [http://domain.com:port/route|/path/to/script]`  
 
 Remove a handler using the `rem` command:
 
-`$ caphook.sh rem [extension]`  
+`$ caphook rem [extension]`  
 
 Before executing a push, Captain Hook will check each modified file in the commit against the contents of `.git/caphook/map` to see if its extension matches. If it does, Captain Hook sends the previous version of the file and the current version of the file to the remote service to be diffed. The response is written to `.git/caphook/diff.html`.
 
 ### map
 
-Captain Hook stores a map of extensions and handlers in `.git/caphook/map`. Use the command `./caphook.sh map` to see which extensions are mapped to which URLs. An example `map` file might look like this:
+Captain Hook stores a map of extensions and handlers in `.git/caphook/map`. Use the command `./caphook map` to see which extensions are mapped to which URLs. An example `map` file might look like this:
 ```
 gh ---> http://pwc01gisdata/VVD
 osm ---> http://13.93.214.149:8080/file
@@ -59,7 +62,7 @@ dyn ---> http://pwc01gisdata/VVD
 
 ### Grasshopper and OpenStudio Measures File
 
-first I'll install Captain Hook: `./caphook.sh install`  
+first I'll install Captain Hook: `./caphook install`  
 returns:
 ```
 ./.git/hooks/pre-push does not exist, creating
@@ -69,12 +72,12 @@ made the ./.git/caphook/files folder
 made the map file
 ```
 
-I'm going to add an OSM handler: `./caphook.sh add osm http://13.93.214.149:8080/file` returns:
+I'm going to add an OSM handler: `./caphook add osm http://13.93.214.149:8080/file` returns:
 ```
 .osm files will now be processed through http://13.93.214.149:8080/file on each push
 ``` 
 
-I will also add a Grasshopper(.gh) handler, which is a local script on my system: `./caphook.sh add gh /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd`  
+I will also add a Grasshopper(.gh) handler, which is a local script on my system: `./caphook add gh /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd`  
 returns:
 ```
 .gh files will now be processed through /c/projects/hackathon/VVD-server/VVD/diffgraphgh.cmd on each push
