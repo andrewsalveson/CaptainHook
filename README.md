@@ -8,6 +8,8 @@ Meaningful responses from services or local programs will get added to an HTML d
 
 ### installation
 
+download and run Captain Hook: `wget https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/caphook.sh && ./caphook.sh install`
+
 run `./caphook.sh install` in git repository root. The installation script creates or adds to the `.git/hooks/pre-push` script file, and creates and populates the `.git/caphook` folder.  
 
 Captain Hook creates these files:
