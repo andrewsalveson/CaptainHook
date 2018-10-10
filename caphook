@@ -8,7 +8,9 @@ stateFile="./.git/caphook/state"
 
 command=$1
 fileType=$2
-handlerScript=$3
+shift
+shift
+handlerScript=$@
 
 # echo "command: $command"
 # echo "file type: $fileType"
@@ -56,6 +58,7 @@ FILTER
     else
       echo "appending caphook to $prepush"
       echo "$payload" >> "$prepush"
+      chmod +x $prepush
     fi
   else
     echo "$prepush does not exist, creating"
@@ -128,7 +131,7 @@ HANDLER
 remove() {
   echo "uninstalling Captain Hook"
   rm -rf .git/caphook
-  sed -i '/#BEGIN caphook/,/#END caphook/d' $prepush
+  sed -i.bak '/#BEGIN caphook/,/#END caphook/d' $prepush
 }
   
 add() {
@@ -150,7 +153,9 @@ rem() {
     if [ "$fileType" = "$f1" ]
     then
       echo "$fileType found on line $lineCount"
-      sed -i "$lineCount d" $mapFile
+      # the funny-looking "--" is to get
+      # sed working on MacOS, because reasons
+      sed -i.bak "$lineCount d" $mapFile
     fi  
   done < $mapFile
 
@@ -163,6 +168,10 @@ map() {
   done < $mapFile
 }
 
+status() {
+  echo "the captain is $(cat $stateFile)"
+}
+
 on() {
   echo "Captain on deck!"
   echo "on" > $stateFile
@@ -173,4 +182,42 @@ off() {
   echo "off" > $stateFile
 }
 
-$@ # call arguments verbatim
+help() {
+  cat <<EOF
+
+Captain Hook - git hook management script
+
+----------------------------------------------------
+
+usage: caphook <command> <args...>
+
+commands:
+
+   install          installs Captain Hook in the
+                    current .git repository
+ 
+   remove           removes Captain Hook from the
+                    current .git repository
+
+   map              show current extension mappings
+
+   add <ex> <...>   add an extension mapping from
+                    <ex> to <...> (could be a URL
+                    or commands)
+
+   rem <ex>         remove an extension mapping
+
+example:
+
+   to pipe all .php files through php-cs-fixer's fix
+   command, we would run the command:
+
+          caphook add php php-cs-fixer fix
+
+
+yarr
+
+EOF
+}
+
+$command $fileType $@ # call arguments verbatim
