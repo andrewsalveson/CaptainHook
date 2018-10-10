@@ -9,7 +9,7 @@ Meaningful responses from services or local programs will get added to an HTML d
 ### installation
 
 download and run Captain Hook:
-````
+```
 wget https://raw.githubusercontent.com/andrewsalveson/CaptainHook/master/caphook && chmod +x ./caphook && ./caphook install
 ```
 
